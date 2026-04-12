@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heartstrings Studio — Funeral Home Partnership</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ── RESET & BASE ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+
+:root {
+  /* Core palette — distinct from consumer site */
+  --ink:        #0f1419;
+  --ink-soft:   #1c2530;
+  --slate:      #263040;
+  --slate-mid:  #344355;
+  --gold:       #b89a5c;
+  --gold-light: #d4b87a;
+  --gold-pale:  #f0e4c8;
+  --gold-dim:   rgba(184,154,92,0.18);
+  --fog:        #f5f3ef;
+  --fog-warm:   #ede9e2;
+  --white:      #ffffff;
+  --text:       #1c2530;
+  --text-mid:   #4a5568;
+  --text-muted: #7a8898;
+  --rule:       #ddd8cf;
+  --rule-dark:  rgba(255,255,255,0.09);
+
+  /* Type */
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans:  'DM Sans', system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--fog);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  margin: -16px -24px -24px -24px;
+}
+
+/* ── UTILITY ── */
+.label {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.label-dark { color: var(--gold-light); }
+
+.rule-deco {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 auto;
+  justify-content: center;
+  padding: 10px 0;
+}
+.rule-deco::before,
+.rule-deco::after {
+  content: '';
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: var(--rule);
+}
+.rule-deco span {
+  width: 6px; height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+.rule-deco.dark::before,
+.rule-deco.dark::after { background: var(--rule-dark); }
+.rule-deco.dark span { background: var(--gold); }
+
+/* ── NAVIGATION BAR ── */
+.topbar {
+  background: var(--ink);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(184,154,92,0.2);
+}
+.topbar-brand {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--fog);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+.topbar-brand span { color: var(--gold-light); font-style: italic; }
+.topbar-nav { display: flex; gap: 32px; align-items: center; }
+.topbar-nav a {
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(245,243,239,0.5);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.topbar-nav a:hover { color: var(--gold-light); }
+.topbar-nav .cta-link {
+  color: var(--gold-light);
+  border: 1px solid rgba(184,154,92,0.4);
+  padding: 7px 18px;
+  border-radius: 2px;
+  transition: background 0.2s, color 0.2s;
+}
+.topbar-nav .cta-link:hover {
+  background: rgba(184,154,92,0.12);
+  color: var(--gold);
+}
+@media (max-width: 620px) {
+  .topbar { padding: 0 20px; }
+  .topbar-nav { gap: 16px; }
+  .topbar-nav a:not(.cta-link) { display: none; }
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+  padding: 96px 40px 88px;
+  text-align: center;
+}
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(184,154,92,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184,154,92,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 20%, rgba(184,154,92,0.10) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-content { position: relative; z-index: 2; max-width: 760px; margin: 0 auto; }
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(184,154,92,0.35);
+  padding: 6px 16px;
+  margin-bottom: 36px;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+.hero-badge::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.7); }
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(40px, 6.5vw, 68px);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--fog);
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+.hero h1 em {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--gold-light);
+}
+.hero-sub {
+  font-size: clamp(15px, 2vw, 17px);
+  color: rgba(245,243,239,0.55);
+  max-width: 580px;
+  margin: 24px auto 44px;
+  line-height: 1.75;
+  font-weight: 300;
+}
+.hero-actions { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 36px;
+  cursor: pointer;
+  border: none;
+  border-radius: 2px;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-ghost {
+  display: inline-block;
+  background: transparent;
+  color: rgba(245,243,239,0.65);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 28px;
+  border: 1px solid rgba(245,243,239,0.18);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-ghost:hover { border-color: rgba(184,154,92,0.5); color: var(--gold-light); }
+.hero-proof {
+  margin-top: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  flex-wrap: wrap;
+  padding-top: 40px;
+  border-top: 1px solid var(--rule-dark);
+}
+.hero-proof-item { text-align: center; }
+.hero-proof-num {
+  font-family: var(--serif);
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--gold-light);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.hero-proof-label {
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: rgba(245,243,239,0.38);
+  text-transform: uppercase;
+}
+.hero-proof-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255,255,255,0.1);
+  flex-shrink: 0;
+}
+@media (max-width: 540px) {
+  .hero { padding: 64px 24px 60px; }
+  .hero-proof { gap: 24px; }
+  .hero-proof-divider { display: none; }
+}
+
+/* ── THE OFFER BAR ── */
+.offer-bar {
+  background: var(--gold);
+  padding: 18px 40px;
+  text-align: center;
+}
+.offer-bar p {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.offer-bar p span { font-style: italic; font-weight: 400; letter-spacing: 0.03em; font-size: 14px; }
+
+/* ── SECTION SHELL ── */
+.section {
+  padding: 80px 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.section-sm { max-width: 760px; }
+.section-wide { max-width: 1100px; }
+.bg-white { background: var(--white); max-width: 100%; padding-left: 0; padding-right: 0; }
+.bg-white .section { margin: 0 auto; }
+.bg-ink { background: var(--ink); max-width: 100%; padding: 80px 40px; }
+.bg-fog { background: var(--fog-warm); max-width: 100%; padding: 80px 40px; }
+
+.section h2 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 300;
+  line-height: 1.18;
+  color: var(--text);
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+.section h2 em { font-style: italic; font-weight: 600; color: var(--slate-mid); }
+.section h2.light { color: var(--fog); }
+.section h2.light em { color: var(--gold-light); }
+.section p.lead {
+  font-size: 17px;
+  color: var(--text-mid);
+  line-height: 1.8;
+  max-width: 640px;
+  font-weight: 300;
+}
+.section p.lead.light { color: rgba(245,243,239,0.62); }
+
+/* ── WHAT IT IS ── */
+.what-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+  margin-top: 20px;
+}
+@media (max-width: 680px) { .what-grid { grid-template-columns: 1fr; gap: 40px; } }
+.what-text p {
+  font-size: 16px;
+  color: var(--text-mid);
+  line-height: 1.82;
+  margin-bottom: 18px;
+  font-weight: 300;
+}
+.what-callout {
+  background: var(--ink-soft);
+  padding: 36px 32px;
+  position: relative;
+}
+.what-callout::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: var(--gold);
+}
+.what-callout-label {
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.what-callout blockquote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 19px;
+  font-weight: 300;
+  color: var(--fog);
+  line-height: 1.65;
+  margin-bottom: 14px;
+}
+.what-callout cite {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(245,243,239,0.38);
+  font-style: normal;
+}
+
+/* ── PROCESS ── */
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 48px;
+  position: relative;
+}
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: calc(12.5% + 20px);
+  right: calc(12.5% + 20px);
+  height: 1px;
+  background: var(--rule);
+  z-index: 0;
+}
+@media (max-width: 700px) {
+  .process-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .process-steps::before { display: none; }
+}
+@media (max-width: 420px) { .process-steps { grid-template-columns: 1fr; } }
+.process-step { text-align: center; padding: 0 12px; position: relative; z-index: 1; }
+.step-circle {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--gold);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.process-step h3 {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.process-step p {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.process-step.highlight .step-circle {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ink);
+}
+.step-tag {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(184,154,92,0.35);
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+/* ── NUMBERS / PRICING ── */
+.numbers-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-top: 48px;
+  background: var(--rule-dark);
+}
+@media (max-width: 600px) { .numbers-wrap { grid-template-columns: 1fr; } }
+.number-cell {
+  background: rgba(255,255,255,0.03);
+  padding: 40px 36px;
+  text-align: center;
+  transition: background 0.2s;
+}
+.number-cell:hover { background: rgba(184,154,92,0.07); }
+.number-big {
+  font-family: var(--serif);
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--gold-light);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.number-big sup { font-size: 28px; vertical-align: super; color: var(--gold); }
+.number-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(245,243,239,0.45);
+  margin-bottom: 12px;
+}
+.number-desc {
+  font-size: 13.5px;
+  color: rgba(245,243,239,0.5);
+  line-height: 1.65;
+  max-width: 240px;
+  margin: 0 auto;
+  font-weight: 300;
+}
+.margin-row {
+  background: rgba(184,154,92,0.1);
+  border-top: 1px solid rgba(184,154,92,0.25);
+  grid-column: 1 / -1;
+  padding: 24px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.margin-row p {
+  font-size: 13px;
+  color: rgba(245,243,239,0.55);
+  font-weight: 300;
+}
+.margin-row strong {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--gold-light);
+}
+.no-contract-badges {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+.badge {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(245,243,239,0.45);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 6px 14px;
+  border-radius: 2px;
+}
+
+/* ── DELIVERABLES ── */
+.delivers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 40px;
+}
+@media (max-width: 700px) { .delivers-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 440px) { .delivers-grid { grid-template-columns: 1fr; } }
+.deliver-card {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  padding: 24px 22px;
+  position: relative;
+  transition: border-color 0.2s, transform 0.15s, box-shadow 0.15s;
+}
+.deliver-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(184,154,92,0.12);
+}
+.deliver-icon {
+  font-size: 20px;
+  margin-bottom: 12px;
+  line-height: 1;
+}
+.deliver-card h4 {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.deliver-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ── SOCIAL PROOF ── */
+.press-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  padding: 40px;
+  background: var(--fog-warm);
+  flex-wrap: wrap;
+}
+.press-item {
+  text-align: center;
+}
+.press-stat {
+  font-family: var(--serif);
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--slate);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.press-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.press-divider { width: 1px; height: 48px; background: var(--rule); flex-shrink: 0; }
+@media (max-width: 480px) {
+  .press-bar { gap: 28px; }
+  .press-divider { display: none; }
+}
+.wboy-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 80px 40px;
+}
+@media (max-width: 680px) {
+  .wboy-section { grid-template-columns: 1fr; gap: 32px; padding: 56px 24px; }
+}
+.wboy-video { position: relative; }
+.wboy-video::before {
+  content: '';
+  position: absolute;
+  top: 12px; left: -12px;
+  right: -4px; bottom: -12px;
+  border: 1px solid var(--rule);
+  z-index: 0;
+  pointer-events: none;
+}
+.wboy-video iframe {
+  display: block;
+  width: 100%;
+  border: none;
+  position: relative;
+  z-index: 1;
+}
+.wboy-text .label { display: block; }
+.wboy-text h3 {
+  font-family: var(--serif);
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+.wboy-text h3 em { font-style: italic; font-weight: 600; color: var(--slate-mid); }
+.wboy-text p {
+  font-size: 15px;
+  color: var(--text-mid);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 14px;
+}
+
+/* ── TESTIMONIALS ── */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 44px;
+}
+@media (max-width: 720px) { .testimonials-grid { grid-template-columns: 1fr; } }
+.testimonial-card {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  padding: 32px 28px;
+}
+.testimonial-card blockquote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.78;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+.testimonial-card cite {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-style: normal;
+}
+
+/* ── CTA ── */
+.cta-wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+.cta-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(184,154,92,0.3);
+  padding: 56px 48px;
+  position: relative;
+  margin-top: 48px;
+}
+.cta-card::before, .cta-card::after {
+  content: '';
+  position: absolute;
+  width: 20px; height: 20px;
+  border-style: solid;
+  border-color: var(--gold);
+}
+.cta-card::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.cta-card::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+.cta-card h3 {
+  font-family: var(--serif);
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 300;
+  color: var(--fog);
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+.cta-card h3 em { font-style: italic; font-weight: 600; color: var(--gold-light); }
+.cta-card p {
+  font-size: 15px;
+  color: rgba(245,243,239,0.5);
+  line-height: 1.75;
+  margin-bottom: 36px;
+  font-weight: 300;
+}
+.cta-email-link {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold-light);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 16px 40px;
+  border-radius: 2px;
+  transition: background 0.2s, color 0.2s;
+}
+.cta-email-link:hover {
+  background: rgba(184,154,92,0.15);
+  color: var(--gold);
+}
+.cta-sub {
+  margin-top: 20px;
+  font-size: 12px;
+  color: rgba(245,243,239,0.25);
+  letter-spacing: 0.06em;
+}
+@media (max-width: 540px) {
+  .cta-card { padding: 36px 24px; }
+}
+
+/* ── FAQ ── */
+.faq { margin-top: 40px; }
+.faq-item { border-bottom: 1px solid var(--rule); padding: 20px 0; }
+.faq-q {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.faq-a {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.78;
+  max-width: 680px;
+  font-weight: 300;
+}
+
+/* ── FOOTER ── */
+.footer {
+  background: #090c10;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.footer-brand {
+  font-family: var(--serif);
+  font-size: 17px;
+  color: rgba(245,243,239,0.5);
+  font-style: italic;
+}
+.footer-links {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.footer-links a {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(245,243,239,0.28);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--gold-light); }
+.footer-copy {
+  font-size: 11px;
+  color: rgba(245,243,239,0.2);
+  width: 100%;
+  text-align: center;
+  padding-top: 4px;
+}
+@media (max-width: 540px) {
+  .footer { padding: 28px 24px; justify-content: center; text-align: center; }
+  .footer-brand, .footer-links { width: 100%; justify-content: center; }
+}
+
+/* ── GLOBAL MOBILE ── */
+@media (max-width: 768px) {
+  body { margin: -8px -12px -12px -12px; }
+  .section { padding: 56px 24px; }
+  .bg-ink { padding: 56px 24px; }
+  .bg-fog { padding: 56px 24px; }
+  .offer-bar { padding: 14px 20px; }
+  .hero { padding: 64px 24px 56px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── TOP BAR ── -->
+<nav class="topbar">
+  <a href="https://tinyurl.com/heartstringsstudiowv" target="_blank" class="topbar-brand">Heartstrings <span>Studio</span></a>
+  <div class="topbar-nav">
+    <a href="#how-it-works">Process</a>
+    <a href="#numbers">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="javascript:void(0)" onclick="window.location.href='mailto:'+'heartstringsstudiowv'+'@'+'gmail.com'" class="cta-link">Contact Tim</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-gradient"></div>
+  <div class="hero-content">
+    <div class="hero-badge">A Partnership Opportunity for Funeral Homes</div>
+    <h1>Give Families Something<br>They'll <em>Keep Forever</em></h1>
+    <p class="hero-sub">A custom memorial song — written from their own memories, delivered within 24 hours. You offer it at arrangement. We handle everything else.</p>
+    <div class="hero-actions">
+      <a href="javascript:void(0)" onclick="window.location.href='mailto:'+'heartstringsstudiowv'+'@'+'gmail.com'" class="btn-primary">Contact Tim to Get Started</a>
+      <a href="#how-it-works" class="btn-ghost">See How It Works ↓</a>
+    </div>
+    <div class="hero-proof">
+      <div class="hero-proof-item">
+        <div class="hero-proof-num">20,000+</div>
+        <div class="hero-proof-label">Views on a single memorial song</div>
+      </div>
+      <div class="hero-proof-divider"></div>
+      <div class="hero-proof-item">
+        <div class="hero-proof-num">50+</div>
+        <div class="hero-proof-label">Songs delivered</div>
+      </div>
+      <div class="hero-proof-divider"></div>
+      <div class="hero-proof-item">
+        <div class="hero-proof-num">24hrs</div>
+        <div class="hero-proof-label">Or less — typical delivery turnaround</div>
+      </div>
+      <div class="hero-proof-divider"></div>
+      <div class="hero-proof-item">
+        <div class="hero-proof-num">$0</div>
+        <div class="hero-proof-label">Upfront to start</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── OFFER BAR ── -->
+<div class="offer-bar">
+  <p>No contracts &nbsp;·&nbsp; No minimums &nbsp;·&nbsp; No setup fees &nbsp;·&nbsp; <span>You only pay when a family says yes.</span></p>
+</div>
+
+<!-- ── WHAT IT IS ── -->
+<div style="background: var(--white);">
+<div style="max-width:1000px; margin:0 auto; padding:80px 40px;">
+  <div class="what-grid">
+    <div class="what-text">
+      <span class="label">What It Is</span>
+      <h2>A keepsake families <em>share for years.</em></h2>
+      <p>Heartstrings Studio writes and produces fully custom memorial songs built from a family's own memories and stories. Every song is one-of-a-kind — written about their person, produced to a professional finish.</p>
+      <p>Families receive a private video link they can share instantly with anyone in the world. They play it at the service. They send it to relatives who couldn't attend. They return to it on anniversaries and holidays.</p>
+      <p>It's not a commodity. It's not a template. It's the one thing no other funeral home in your area is offering.</p>
+    </div>
+    <div class="what-callout">
+      <div class="what-callout-label">From a Real Family</div>
+      <blockquote>"My song has brought so much comfort to me. It reminds me of the wonderful man that came into my life and showed me what true happiness was. I will always remember… He loved me forever and a day."</blockquote>
+      <cite>— Dolores B., memorial song recipient</cite>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- divider -->
+<div class="rule-deco"><span></span></div>
+
+<!-- ── HOW IT WORKS ── -->
+<div style="background: var(--white);" id="how-it-works">
+<div style="max-width:1000px; margin:0 auto; padding:80px 40px;">
+  <div style="text-align:center; max-width:600px; margin:0 auto 0;">
+    <span class="label">The Process</span>
+    <h2>Your staff's job <em>ends at Step 2.</em></h2>
+    <p class="lead" style="margin:0 auto;">One question at arrangement. A card. We handle the rest.</p>
+  </div>
+
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="step-circle">1</div>
+      <h3>You Offer It</h3>
+      <p>One question during arrangements: <em>"Would you like a custom song written about your loved one?"</em></p>
+      <span class="step-tag">Your team</span>
+    </div>
+    <div class="process-step">
+      <div class="step-circle">2</div>
+      <h3>Give Them the Handout</h3>
+      <p>A printed one-pager shows the family what questions to expect and includes the link to submit their story online — at their own pace, from home.</p>
+      <span class="step-tag">Your team</span>
+    </div>
+    <div class="process-step highlight">
+      <div class="step-circle">3</div>
+      <h3>We Take Over</h3>
+      <p>The family submits the form directly to Tim. He writes, produces, and delivers a finished song within 24 hours.</p>
+      <span class="step-tag" style="color:var(--gold-light); border-color:rgba(212,184,122,0.4);">Heartstrings Studio</span>
+    </div>
+    <div class="process-step highlight">
+      <div class="step-circle">4</div>
+      <h3>You Present It</h3>
+      <p>You deliver the song to the family — under your name, your brand, your relationship.</p>
+      <span class="step-tag" style="color:var(--gold-light); border-color:rgba(212,184,122,0.4);">Your team</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- divider -->
+<div class="rule-deco"><span></span></div>
+
+<!-- ── THE NUMBERS ── -->
+<div class="bg-ink" id="numbers">
+<div style="max-width:1000px; margin:0 auto;">
+  <div style="text-align:center; max-width:600px; margin:0 auto 8px;">
+    <span class="label label-dark">The Numbers</span>
+    <h2 class="light" style="color:rgba(245,243,239,0.92);">Simple pricing.<br><em>Real margin.</em></h2>
+    <p class="lead light" style="color:rgba(245,243,239,0.72);">You set the family price. The difference is yours.</p>
+  </div>
+
+  <div class="numbers-wrap">
+    <div class="number-cell">
+      <div class="number-big"><sup>$</sup>100</div>
+      <div class="number-label">Your wholesale cost</div>
+      <div class="number-desc">Invoiced only after the song is delivered. Nothing up front.</div>
+    </div>
+    <div class="number-cell">
+      <div class="number-big"><sup>$</sup>200–400</div>
+      <div class="number-label">Typical family price</div>
+      <div class="number-desc">You set this — most funeral homes price between $200 and $400.</div>
+    </div>
+    <div class="margin-row">
+      <p>Your margin per song →</p>
+      <strong>$100–$300+ per family</strong>
+    </div>
+  </div>
+
+  <div class="no-contract-badges">
+    <span class="badge">No contracts</span>
+    <span class="badge">No minimums</span>
+    <span class="badge">No setup fees</span>
+    <span class="badge">Pay only when a family orders</span>
+  </div>
+</div>
+</div>
+
+<!-- divider -->
+<div class="rule-deco dark" style="background:var(--ink); padding:0 40px;">
+  <div class="rule-deco dark"><span></span></div>
+</div>
+
+<!-- ── WHAT FAMILIES RECEIVE ── -->
+<div style="background: var(--white);">
+<div style="max-width:1000px; margin:0 auto; padding:80px 40px;">
+  <div style="text-align:center; max-width:560px; margin:0 auto 0;">
+    <span class="label">What's Included</span>
+    <h2>Everything delivered.<br><em>Nothing left to manage.</em></h2>
+  </div>
+  <div class="delivers-grid">
+    <div class="deliver-card">
+      <div class="deliver-icon">🎵</div>
+      <h4>Custom Song</h4>
+      <p>Written from scratch using the family's own words and memories. No templates.</p>
+    </div>
+    <div class="deliver-card">
+      <div class="deliver-icon">🎧</div>
+      <h4>MP3 Audio File</h4>
+      <p>High-quality audio ready for the service, slideshow, or personal keepsake.</p>
+    </div>
+    <div class="deliver-card">
+      <div class="deliver-icon">🎬</div>
+      <h4>MP4 Video File</h4>
+      <p>Shareable video with album art — easy to send, save, or present at the service.</p>
+    </div>
+    <div class="deliver-card">
+      <div class="deliver-icon">🔗</div>
+      <h4>Private YouTube Link</h4>
+      <p>A shareable link families can send to relatives near and far, instantly.</p>
+    </div>
+    <div class="deliver-card">
+      <div class="deliver-icon">🖼️</div>
+      <h4>Custom Album Art</h4>
+      <p>Original artwork created for the song — a visual keepsake to accompany the music.</p>
+    </div>
+    <div class="deliver-card">
+      <div class="deliver-icon">📄</div>
+      <h4>Printable Lyric Sheet</h4>
+      <p>A keepsake the family can frame, include in a program, or hold onto forever.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ── PRESS / PROOF ── -->
+<div style="background:var(--fog-warm);">
+<div style="max-width:1000px; margin:0 auto;">
+<div class="press-bar">
+  <div class="press-item">
+    <div class="press-stat">20,000+</div>
+    <div class="press-label">Views on a single memorial song</div>
+  </div>
+  <div class="press-divider"></div>
+  <div class="press-item">
+    <div class="press-stat">100+</div>
+    <div class="press-label">Organic shares on one tribute</div>
+  </div>
+  <div class="press-divider"></div>
+  <div class="press-item">
+    <div class="press-stat">WBOY</div>
+    <div class="press-label">Featured on 304 Today</div>
+  </div>
+  <div class="press-divider"></div>
+  <div class="press-item">
+    <div class="press-stat">50+</div>
+    <div class="press-label">Songs delivered to families</div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- ── WBOY ── -->
+<div style="background: var(--white);">
+<div class="wboy-section">
+  <div class="wboy-video">
+    <iframe src="https://www.youtube.com/embed/j1_HRI6aJU4" height="280" allowfullscreen></iframe>
+  </div>
+  <div class="wboy-text">
+    <span class="label">As Seen On</span>
+    <h3>Featured on<br><em>WBOY 304 Today</em></h3>
+    <p>Tim Harbert and Heartstrings Studio were featured on West Virginia's WBOY 304 Today segment — bringing regional credibility to every partnership.</p>
+    <p>When families share these songs, they share where they came from. The funeral homes that made it possible become part of the story.</p>
+  </div>
+</div>
+</div>
+
+<!-- ── TESTIMONIALS ── -->
+<div style="background:var(--fog-warm);">
+<div style="max-width:1000px; margin:0 auto; padding:80px 40px;">
+  <div style="text-align:center; max-width:560px; margin:0 auto;">
+    <span class="label">What Families Say</span>
+    <h2>The reaction you'll<br><em>hand them.</em></h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <blockquote>"I can't thank Tim enough for writing the perfect song. My daughter cried, as well as I did. I would have him write a hundred songs for me."</blockquote>
+      <cite>— Jane H.</cite>
+    </div>
+    <div class="testimonial-card">
+      <blockquote>"That sounds just like my life. I don't cry… but you just had me bawling like a baby. That's so beautiful."</blockquote>
+      <cite>— Chrissy H.</cite>
+    </div>
+    <div class="testimonial-card">
+      <blockquote>"My song has brought so much comfort. It reminds me of the wonderful man that came into my life. I will always remember — he loved me forever and a day."</blockquote>
+      <cite>— Dolores B.</cite>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ── SAMPLE SONGS ── -->
+<div style="background: var(--white);">
+<div style="max-width:1000px; margin:0 auto; padding:80px 40px;">
+  <div style="text-align:center; max-width:560px; margin:0 auto 40px;">
+    <span class="label">Hear the Work</span>
+    <h2>Real memorial songs,<br><em>real families.</em></h2>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+    <div>
+      <iframe style="width:100%; border:none; display:block;" height="220" src="https://www.youtube.com/embed/fDOgbEE7BX8" allowfullscreen></iframe>
+      <div style="padding:16px 0 0;">
+        <div style="font-size:9.5px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Memorial</div>
+        <div style="font-family:var(--serif); font-size:16px; font-weight:600; color:var(--text);">Forever and a Day</div>
+      </div>
+    </div>
+    <div>
+      <iframe style="width:100%; border:none; display:block;" height="220" src="https://www.youtube.com/embed/OOypcnwpw9A" allowfullscreen></iframe>
+      <div style="padding:16px 0 0;">
+        <div style="font-size:9.5px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Memorial</div>
+        <div style="font-family:var(--serif); font-size:16px; font-weight:600; color:var(--text);">I Still Talk to You</div>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center; margin-top:32px;">
+    <a href="https://www.youtube.com/playlist?list=PLBaBQ7Vhr-5-UuSeneZViY8WAyxJujGXa" target="_blank" class="btn-ghost" style="color:var(--text-mid); border-color:var(--rule); font-size:11.5px;">Full Memorial Playlist on YouTube →</a>
+  </div>
+</div>
+</div>
+
+<!-- divider -->
+<div class="rule-deco"><span></span></div>
+
+<!-- ── FAQ ── -->
+<div style="background:var(--white);" id="faq">
+<div style="max-width:760px; margin:0 auto; padding:80px 40px;">
+  <span class="label">Common Questions</span>
+  <h2>What funeral homes<br><em>ask us first.</em></h2>
+  <div class="faq">
+    <div class="faq-item">
+      <div class="faq-q">How much time does this require from our staff?</div>
+      <div class="faq-a">Minimal. Your team asks one question during arrangements and hands the family a printed one-pager showing what questions to expect and a link to submit their story. After that, the family handles everything on their own time — Tim handles production, delivery, and follow-up. Your staff isn't involved beyond that handoff.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What if a family doesn't want it?</div>
+      <div class="faq-a">No problem. There's no pressure and no obligation. You only pay when a family says yes and Tim delivers the finished song. Families who decline don't cost you anything.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can we brand the song under our funeral home's name?</div>
+      <div class="faq-a">Yes. The song is presented to the family as a service your funeral home arranged and provided. Tim works in the background — the relationship stays yours.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How is the song actually delivered?</div>
+      <div class="faq-a">Tim delivers the completed song — MP3, MP4, album art, lyric sheet, and a private YouTube link — directly to you within 24 hours of the family submitting their story. You then pass it along to the family however fits your workflow.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Is there any commitment to get started?</div>
+      <div class="faq-a">None. No contract, no minimum order count, no setup fee. Reach out to Tim to get your question card materials and you're ready to offer it on your next arrangement.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ── CTA ── -->
+<div class="bg-ink">
+<div class="cta-wrap">
+  <span class="label label-dark" style="display:block; text-align:center;">Get Started</span>
+  <div class="cta-card">
+    <h3>Ready to offer this<br>to your <em>next family?</em></h3>
+    <p>Reach out to Tim directly. He'll get you set up with question card materials and walk you through the process — no commitment required.</p>
+    <a href="javascript:void(0)" onclick="window.location.href='mailto:'+'heartstringsstudiowv'+'@'+'gmail.com'" class="cta-email-link">Email Tim to Get Started</a>
+    <p class="cta-sub">heartstringsstudiowv@gmail.com &nbsp;·&nbsp; Heartstrings Studio &nbsp;·&nbsp; Lumberport, WV</p>
+  </div>
+</div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <span class="footer-brand">Heartstrings Studio</span>
+  <div class="footer-links">
+    <a href="https://tinyurl.com/heartstringsstudiowv" target="_blank">Studio Website</a>
+    <a href="https://www.youtube.com/playlist?list=PLBaBQ7Vhr-5-UuSeneZViY8WAyxJujGXa" target="_blank">Song Playlist</a>
+    <a href="javascript:void(0)" onclick="window.location.href='mailto:'+'heartstringsstudiowv'+'@'+'gmail.com'">Contact Tim</a>
+  </div>
+  <p class="footer-copy">&copy; 2026 Heartstrings Studio &nbsp;·&nbsp; Lumberport, West Virginia</p>
+</footer>
+
+</body>
+</html>
