@@ -42,7 +42,11 @@ body {
   font-size: 16px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-  margin: -16px -24px -24px -24px;
+  /* vertical bleed only — horizontal negative margins made the body wider
+     than the viewport, which let the page pan sideways on mobile */
+  margin: -16px 0 -24px 0;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 /* ── UTILITY ── */
@@ -811,7 +815,7 @@ body {
 
 /* ── GLOBAL MOBILE ── */
 @media (max-width: 768px) {
-  body { margin: -8px -12px -12px -12px; }
+  body { margin: -8px 0 -12px 0; }
   .section { padding: 56px 24px; }
   .bg-ink { padding: 56px 24px; }
   .bg-fog { padding: 56px 24px; }
