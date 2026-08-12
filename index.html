@@ -635,6 +635,33 @@ body {
   position: relative;
   z-index: 1;
 }
+/* ── SONG EMBEDS (square, like the YouTube thumbnails) ── */
+.song-embed {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  height: 0;
+  overflow: hidden;
+  background: #000;
+}
+.song-embed iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+.song-embed-feature { max-width: 560px; margin: 0 auto; }
+.songs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+@media (max-width: 540px) {
+  .songs-grid { grid-template-columns: 1fr; gap: 32px; max-width: 400px; margin: 0 auto; }
+}
+
 .wboy-text .label { display: block; }
 .wboy-text h3 {
   font-family: var(--serif);
@@ -1113,24 +1140,30 @@ body {
     <span class="label">Hear the Work</span>
     <h2>Real memorial songs,<br><em>real families.</em></h2>
   </div>
-  <div style="max-width:720px; margin:0 auto 40px;">
-    <iframe style="width:100%; border:none; display:block;" height="405" src="https://www.youtube.com/embed/a50GgjTQago" allowfullscreen></iframe>
+  <div class="song-embed-feature" style="margin:0 auto 40px;">
+    <div class="song-embed">
+      <iframe src="https://www.youtube.com/embed/a50GgjTQago" allowfullscreen></iframe>
+    </div>
     <div style="padding:18px 0 0; text-align:center;">
       <div style="font-size:9.5px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:5px;">The Featured Memorial Song</div>
       <div style="font-family:var(--serif); font-size:22px; font-weight:600; color:var(--text);">I'm Still Here</div>
     </div>
   </div>
 
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+  <div class="songs-grid">
     <div>
-      <iframe style="width:100%; border:none; display:block;" height="220" src="https://www.youtube.com/embed/iCzuyECSoFY" allowfullscreen></iframe>
+      <div class="song-embed">
+        <iframe src="https://www.youtube.com/embed/iCzuyECSoFY" allowfullscreen></iframe>
+      </div>
       <div style="padding:16px 0 0;">
         <div style="font-size:9.5px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Memorial</div>
         <div style="font-family:var(--serif); font-size:16px; font-weight:600; color:var(--text);">She Left Us a Party</div>
       </div>
     </div>
     <div>
-      <iframe style="width:100%; border:none; display:block;" height="220" src="https://www.youtube.com/embed/fDOgbEE7BX8" allowfullscreen></iframe>
+      <div class="song-embed">
+        <iframe src="https://www.youtube.com/embed/fDOgbEE7BX8" allowfullscreen></iframe>
+      </div>
       <div style="padding:16px 0 0;">
         <div style="font-size:9.5px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Memorial</div>
         <div style="font-family:var(--serif); font-size:16px; font-weight:600; color:var(--text);">Forever and a Day</div>
